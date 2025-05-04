@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 
 interface MobileMenuProps {
@@ -25,16 +24,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       </div>
       
       <nav className="flex flex-col p-4 space-y-4">
-        <a href="#features" onClick={onClose} className="text-gray-700 hover:text-blue-600 transition-colors py-2">Features</a>
-        <a href="#testimonials" onClick={onClose} className="text-gray-700 hover:text-blue-600 transition-colors py-2">Testimonials</a>
-        <a href="#pricing" onClick={onClose} className="text-gray-700 hover:text-blue-600 transition-colors py-2">Pricing</a>
-        <a href="#contact" onClick={onClose} className="text-gray-700 hover:text-blue-600 transition-colors py-2">Contact</a>
+        <a href="#about" onClick={onClose} className="text-gray-700 hover:text-blue-600 transition-colors py-2">About Us</a>
+        <a href="#contact" onClick={onClose} className="text-gray-700 hover:text-blue-600 transition-colors py-2">Contact Us</a>
       </nav>
-      
-      <div className="mt-auto p-4 flex flex-col space-y-2">
-        <Button variant="outline" className="w-full">Log In</Button>
-        <Button className="w-full">Sign Up</Button>
-      </div>
     </div>
   );
 };

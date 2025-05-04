@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
 interface NavbarProps {
@@ -16,16 +15,9 @@ const Navbar: React.FC<NavbarProps> = ({ toggleMobileMenu }) => {
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
-          <a href="#testimonials" className="text-gray-700 hover:text-blue-600 transition-colors">Testimonials</a>
-          <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition-colors">Pricing</a>
-          <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+          <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About Us</a>
+          <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact Us</a>
         </nav>
-        
-        <div className="hidden md:flex items-center space-x-4">
-          <Button variant="outline">Log In</Button>
-          <Button>Sign Up</Button>
-        </div>
         
         <button 
           onClick={toggleMobileMenu}
