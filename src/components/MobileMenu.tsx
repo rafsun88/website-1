@@ -1,5 +1,7 @@
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 
 interface MobileMenuProps {
@@ -8,25 +10,64 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
+  const menuRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        onClose();
+      }
+    };
+    
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, onClose]);
+  
   if (!isOpen) return null;
   
   return (
-    <div className="fixed inset-0 z-50 bg-white flex flex-col md:hidden">
-      <div className="flex items-center justify-between p-4 border-b">
-        <h2 className="text-xl font-bold text-blue-600">SkyBrand</h2>
-        <button 
-          onClick={onClose}
-          className="p-2 text-gray-600 hover:text-blue-600 transition-colors"
-          aria-label="Close mobile menu"
-        >
-          <X size={24} />
-        </button>
+    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm">
+      <div 
+        ref={menuRef}
+        className="fixed top-0 right-0 h-full w-[250px] bg-white shadow-lg p-6 overflow-y-auto"
+      >
+        <div className="flex justify-end mb-6">
+          <button 
+            onClick={onClose}
+            className="p-2 text-gray-600 hover:text-blue-600 transition-colors"
+            aria-label="Close mobile menu"
+          >
+            <X size={24} />
+          </button>
+        </div>
+        
+        <nav className="flex flex-col space-y-4">
+          <a 
+            href="#about" 
+            onClick={onClose}
+            className="text-gray-700 hover:text-blue-600 transition-colors py-2"
+          >
+            About Us
+          </a>
+          <a 
+            href="#contact" 
+            onClick={onClose}
+            className="text-gray-700 hover:text-blue-600 transition-colors py-2"
+          >
+            Contact Us
+          </a>
+          <Link to="/admin/login">
+            <Button variant="outline" className="w-full mt-4" onClick={onClose}>
+              Admin Login
+            </Button>
+          </Link>
+        </nav>
       </div>
-      
-      <nav className="flex flex-col p-4 space-y-4">
-        <a href="#about" onClick={onClose} className="text-gray-700 hover:text-blue-600 transition-colors py-2">About Us</a>
-        <a href="#contact" onClick={onClose} className="text-gray-700 hover:text-blue-600 transition-colors py-2">Contact Us</a>
-      </nav>
     </div>
   );
 };
