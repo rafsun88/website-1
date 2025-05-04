@@ -3,6 +3,13 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
+  const scrollToContact = () => {
+    const contactElement = document.getElementById("contact");
+    if (contactElement) {
+      contactElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="pt-24 md:pt-36 pb-16 md:pb-24 px-4 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="container mx-auto max-w-6xl">
@@ -14,12 +21,13 @@ const Hero = () => {
             <p className="text-lg md:text-xl text-gray-600 max-w-lg">
               Create beautiful, responsive websites in minutes with our intuitive tools and pre-designed components.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+            <div>
+              <Button 
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-700"
+                onClick={scrollToContact}
+              >
                 Get Started
-              </Button>
-              <Button size="lg" variant="outline">
-                Watch Demo
               </Button>
             </div>
           </div>
