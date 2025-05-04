@@ -1,12 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState } from "react";
+import Navbar from "@/components/Navbar";
+import MobileMenu from "@/components/MobileMenu";
+import Hero from "@/components/Hero";
+import Features from "@/components/Features";
+import Testimonials from "@/components/Testimonials";
+import Pricing from "@/components/Pricing";
+import CTA from "@/components/CTA";
+import Footer from "@/components/Footer";
 
 const Index = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-white">
+      <Navbar toggleMobileMenu={toggleMobileMenu} />
+      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
+      
+      <main>
+        <Hero />
+        <Features />
+        <Testimonials />
+        <Pricing />
+        <CTA />
+      </main>
+      
+      <Footer />
     </div>
   );
 };
